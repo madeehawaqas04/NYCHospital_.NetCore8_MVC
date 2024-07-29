@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NYCHospital.Models.Patient>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Patient List </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Patients" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Patient
+            </a>
+        </div>
+    </div>
+</div>
+
+<table  class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+            Name
+            </th>
+            <th>
+               Address
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @item.Name
+            </td>
+            <td>
+                    @item.Address
+            </td>
+            <td>
+                    @item.CreatedDateTime
+            </td>
+            <td>
+             
+                    <a asp-action="Edit" asp-route-id="@item.Id"
+                        class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                        class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
